@@ -1,0 +1,18 @@
+# Java (Spring Boot)
+demo/target/
+demo/.mvn/
+*.log
+
+# Node (Angular)
+demo-frontend/node_modules/
+demo-frontend/dist/
+
+# General
+*.class
+*.jar
+*.war
+*.iml
+.DS_Store
+.env
+.idea/
+.vscode/
