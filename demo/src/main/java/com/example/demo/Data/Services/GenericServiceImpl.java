@@ -1,4 +1,4 @@
-package com.example.demo.Data.Services;
+package com.example.demo.data.services;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -30,7 +30,7 @@ public abstract class GenericServiceImpl<T, ID> implements GenericService<T, ID>
     }
 
     @Override
-    public void deleteById(ID id) {
+    public void delete(ID id) {
         repository.deleteById(id);
     }
 }

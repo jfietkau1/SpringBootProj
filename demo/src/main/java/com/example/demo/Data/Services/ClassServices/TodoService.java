@@ -1,8 +1,8 @@
-package com.example.demo.Data.Services.ClassServices;
+package com.example.demo.data.services.classservices;
 import org.springframework.stereotype.Service;
-import com.example.demo.data.repository.todoRepository;
-
-
+import com.example.demo.data.models.TodoItem;
+import com.example.demo.data.services.GenericServiceImpl;
+import com.example.demo.data.repositories.TodoRepository;
 
 @Service
 
@@ -11,3 +11,13 @@ public class TodoService extends GenericServiceImpl<TodoItem, Long> {
         super(todoRepository);
     }
 }
+
+
+
+
+
+
+
+
+
+

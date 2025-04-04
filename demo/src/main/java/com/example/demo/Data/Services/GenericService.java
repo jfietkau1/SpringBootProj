@@ -1,4 +1,4 @@
-package com.example.demo.Data.Services;
+package com.example.demo.data.services;
 
 
 import java.util.List;
@@ -9,5 +9,5 @@ public interface GenericService<T, ID> {
     List<T> getAll();
     Optional<T> getById(ID id);
     T save(T entity);
-    void deleteById(ID id);
+    void delete(ID id);
 }
