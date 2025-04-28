@@ -33,4 +33,6 @@ public abstract class GenericServiceImpl<T, ID> implements GenericService<T, ID>
     public void delete(ID id) {
         repository.deleteById(id);
     }
+
+    
 }

@@ -1,7 +1,79 @@
-<h2>Todo List</h2>
-<ul>
-  <li *ngFor="let todo of todos">
-    {{ todo.title }} - {{ todo.done ? 'Done' : 'Not Done' }}
-  </li>
-</ul>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Todo List</h2>
+    <button class="btn btn-primary" (click)="openModal()">Add Todo</button>
+  </div>
+
+  <table class="table table-hover table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th style="width: 150px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos">
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.done ? '✅ Done' : '⏳ Not Done' }}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-secondary me-2" (click)="editTodo(todo)">Edit</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="confirmDelete(todo)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade show d-block" tabindex="-1" role="dialog" *ngIf="showModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form (ngSubmit)="submitForm()">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ isEditing ? 'Edit Todo' : 'New Todo' }}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input class="form-control" [(ngModel)]="todoForm.title" name="title" required />
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="todoForm.done" name="done" id="doneCheck" />
+            <label class="form-check-label" for="doneCheck">Done</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">{{ isEditing ? 'Update' : 'Create' }}</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade show d-block" tabindex="-1" role="dialog" *ngIf="showDeleteModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Confirm Deletion</h5>
+        <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="closeDeleteModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete <strong>{{ todoToDelete?.title }}</strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeDeleteModal()">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="deleteConfirmed()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <p *ngIf="showDeleteModal" style="color:red;">🧪 Modal should be visible</p> -->
+
+
+<div class="modal-backdrop fade show" *ngIf="isAnyModalOpen"></div>
 
